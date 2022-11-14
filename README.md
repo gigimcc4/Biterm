@@ -1,4 +1,6 @@
-# Biterm
+# Data Feminism and Topic Modeling
+### An analysis of internet Data Feminism book reviews
+
 Using various Topic modeling techniques in R to tease out themes from reviews on the book "Data Feminism."
 
 There are many ways to incorporate Data Feminism principles into everyday research and work. For instance: 
