@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.35">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jeanne McClure">
+<meta name="dcterms.date" content="2022-11-14">
+
+<title>Investigating book reviews of the Data Feminism book</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="DF_review_files/libs/clipboard/clipboard.min.js"></script>
+<script src="DF_review_files/libs/quarto-html/quarto.js"></script>
+<script src="DF_review_files/libs/quarto-html/popper.min.js"></script>
+<script src="DF_review_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="DF_review_files/libs/quarto-html/anchor.min.js"></script>
+<link href="DF_review_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="DF_review_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="DF_review_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="DF_review_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="DF_review_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+<script src="DF_review_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="DF_review_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Investigating book reviews of the <em>Data Feminism</em> book</h1>
+<p class="subtitle lead">A topic modeling approach</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeanne McClure </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 14, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="purpose" class="level2">
+<h2 class="anchored" data-anchor-id="purpose">1 PURPOSE</h2>
+<p>To inspect book reviews on Data Feminism using a Topic Modleing Technique</p>
+<section id="a.-motivation-and-focus" class="level3">
+<h3 class="anchored" data-anchor-id="a.-motivation-and-focus">1a. Motivation and Focus</h3>
+<p>A few years back, I remember reading a publication by Din-Kariuki (2015) written about feminist initiatives in University. Dan-Kariuki (2015) emphasized the importance of “conversations about race, class, disability, sexuality, and other axes of oppression” within women experiences. Kimberlé Crenshaw’s 1989 term <em>intersectionality</em> focuses on “the interconnected nature of social categorizations such as race, class, and gender as they apply to a given individual or group, regarded as creating overlapping and interdependent systems of discrimination or disadvantage” (Cooper, 2016). Connecting intersectionality and feminism, Din-Kariuki (2015) states, “as far as sexism is concerned, women from different segments of society are oppressed to different extents and in different ways” grounding that as intersectional feminism. A new book on feminism has emerged, <em>Data Feminism</em> first published on March 16, 2020, by Catherine D’Ignazio and Lauren Klein, set forth seven principles with an intersectional feminist lens to examine unequal power structures in data.</p>
+<p>Seven Principles from Data Feminism book: - Examine power - Challenge power - Work towards justice. - Elevate emotion &amp; embodiment - Rethink binaries &amp; hierarchies - Embrace pluralism - Consider context - Make labor visible</p>
+<p>The authors include literature about and written by members of the LGBTQ+ community, people of color, previously colonized nations, and indigenous communities. Like Dan-Kariuki’s (2015) article, Data Feminism highlights that feminism is not only about the female gender and grounded in intersectional feminism. Touting that data feminism isn’t only for women but for males, non-binary and genderqueer to use in their work.</p>
+<p>After recently completing a N-gram analysis from Twitter hashtags like #DataFemisim, I wanted to learn more about what others might be saying about the book <em>Data Feminism</em>. Or even how they might be using the framework in their work. Since the book is relatively new, I wasn’t sure a literature review would give me a good sense of <em>Data Feminism </em>. I decided to look at book reviews from Amazon, Goodreads, and blogs through a Google search. Guiding my analysis are the following questions:</p>
+<ol type="1">
+<li>Can we quantify the words between Data Feminism book review sites and are they statistically significant?</li>
+<li>Can a topic modeling analysis on <em>Data Feminism</em> book reviews reveal topics or trends on the framework principles?</li>
+</ol>
+</section>
+<section id="b.-load-libraries" class="level3">
+<h3 class="anchored" data-anchor-id="b.-load-libraries">1b. Load Libraries</h3>
+<p>First, let’s load the libraries needed to wrangle, the data. Since we are doing an Unsupervised Machine Learning technique called Topic Modeling we will be using packages specifically for that analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Install packages for wrangling</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install packages for reading data</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(textdata)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#install Packages for Topic Modleing</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tm)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SnowballC)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(topicmodels)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ldatuning)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stm)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># for visualizations</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud2)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra) </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr) </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra) </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(formattable) </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(yarrr)  </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(LDAvis)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">#define colors to use throughout</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>my_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#E69F00"</span>, <span class="st">"#56B4E9"</span>, <span class="st">"#009E73"</span>, <span class="st">"#CC79A7"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#D65E00"</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">#define theme plot used throughout</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>theme_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">aticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                         <span class="at">pgminor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                         <span class="at">lt =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                         <span class="at">lp =</span> <span class="st">"none"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>), <span class="co">#center the title</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> aticks, <span class="co">#set axis ticks to on or off</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> pgminor, <span class="co">#turn on or off the minor grid lines</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> lt, <span class="co">#turn on or off the legend title</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> lp) <span class="co">#turn on or off the legend</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="method" class="level2">
+<h2 class="anchored" data-anchor-id="method">2 Method</h2>
+<section id="a.-webscraping-and-pulling-data-to-engineered-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="a.-webscraping-and-pulling-data-to-engineered-dataset">2a. Webscraping and pulling data to engineered dataset</h3>
+<p>Using customer reviews as an analysis is not new. Companys use manual and AI analysis of Amazon reviews to help drive change, Bag-of-words approach, and look at term frequencies across all reviews (Bussler, 2021). Looking closely at a Google Search, I found book reviews from Goodreads.com, Amazon.com, and a few online platforms in the form of blogs. The criteria used was that it must denote a book review on only the Data Feminism book. I categorized the blogs into an “other” category; although not copious, the reviews equaled 134.</p>
+<ul>
+<li>Good Reads Reviews: 104</li>
+<li>Amazon book reviews: 22</li>
+<li>Other: 12</li>
+</ul>
+<p>I tried a web scraping technique and partial copy and paste for this analysis. To web scrape, I installed <em>Selector Gadget</em> an open-source Chrome Extension to quickly identify CSS/Xpath selection. I was able to scrape the first page of Goodreads but could not get my loop to work on crawling the other pages. While scraping Goodreads reviews, my script pulled duplicates of some of the reviews, but only the first paragraph and only the first line in some instances. I used a separate script on the Amazon reviews after collecting the ASIN number. I ended up Tidying the data frames in excel since i had to go threw and delete the duplicates manually. Finally, I went through the Google Search, looking for Blogs that came up in my search (“Data Feminism” AND “Book Review”).</p>
+</section>
+<section id="b.-read-and-restructure-data" class="level3">
+<h3 class="anchored" data-anchor-id="b.-read-and-restructure-data">2b. Read and Restructure Data</h3>
+<p>Let’s read in the data and only inspect the first two since some of the reviews are a few pages. The data frame looks pretty good and tidy, so there will not be much wrangling of the data. I want to add a unique identifier for later analysis. We see that we have 134 observations with five variables. We are going to add a unique identifier with rowid_to column() function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#read in previously scraped data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df_reviews <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/result_df_p1 (3).xlsx"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df_reviews <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">rowid_to_column</span>(df_reviews, <span class="st">"index"</span>) <span class="co">#add unique identifier</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df_reviews <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n=</span><span class="dv">2</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"Restructured Data - tidy_tweets data frame"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>Restructured Data - tidy_tweets data frame</caption>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> index </th>
+   <th style="text-align:left;"> name </th>
+   <th style="text-align:left;"> year </th>
+   <th style="text-align:left;"> review </th>
+   <th style="text-align:left;"> site </th>
+   <th style="text-align:left;"> book </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Sanjida </td>
+   <td style="text-align:left;"> Jan 08, 2021 </td>
+   <td style="text-align:left;"> A new way of thinking about data science and data ethics that is informed by the ideas of intersectional feminism.Today, data science is a form of power. It has been used to expose injustice, improve health outcomes, and topple governments. But it has also been used to discriminate, police, and surveil. This potential for good, on the one hand, and harm, on the other, makes it essential to ask: Data science by whom? Data science for whom? Data science with whose interests in mind? The narratives around big data and data science are overwhelmingly white, male, and techno-heroic. In Data Feminism, Catherine D'Ignazio and Lauren Klein present a new way of thinking about data science and data ethics—one that is informed by intersectional feminist thought.Illustrating data feminism in action, D'Ignazio and Klein show how challenges to the male/female binary can help challenge other hierarchical (and empirically wrong) classification systems. They explain how, for example, an understanding of emotion can expand our ideas about effective data visualization, and how the concept of invisible labor can expose the significant human efforts required by our automated systems. And they show why the data never, ever “speak for themselves.”Data Feminism offers strategies for data scientists seeking to learn how feminism can help them work toward justice, and for feminists who want to focus their efforts on the growing field of data science. But Data Feminism is about much more than gender. It is about power, about who has it and who doesn't, and about how those differentials of power can be challenged and changed. </td>
+   <td style="text-align:left;"> Good Reads </td>
+   <td style="text-align:left;"> data feminism </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Harsh </td>
+   <td style="text-align:left;"> Nov 05, 2020 </td>
+   <td style="text-align:left;"> The authors of this book want us to be aware of our positionality, so I'll tell you that I've been a scientist in the field of genetics for over 20 years, more recently as a curator and manager of delivering data to the public. I'm also a woman of color who thinks a lot about ethics and equity. Which is to say, I really try to think critically about data, scientific and otherwise. I take this book literally. I fully agree that we need to look at what biases lay behind the hypotheses and interpretations of studies. I think scientists need to be clear in what parameters and variables are actually being measured, and whether it's meaningful to use certain categories at all (for instance, in my field, US racial categories are not very meaningful, and their use often obscures conclusions from data). I think it's important to define your terms, be as precise as you can and aware of how shorthand labels may mislead. I think we should consider what blindspots we may have, especially when doing research that impacts people and societies. And that interactions on an equal standing with people with different perspectives (professional and personal backgrounds) can help point out these blindspots. I think we should interrogate why certain jobs in STEM projects (e.g. curator vs data scientist) have more or less prestige, and what that says about our society. Therefore, I largely agree with the recommendations, such as they are, of this book. But I can't take this book seriously, because it frames these concepts, which I consider simply good practice, as feminism (by feminism, they mean an intersection of a gender+racial+class justice lens). Maybe I'm too much of a consequentialist, but my kneejerk reaction to this book was to reject putting the fetishization of identity ahead of practice. I was also hoping for more insights that would help in my professional life. Disappointingly, rather than give precise scenarios of study and analysis design, the authors tend to rely on quotes from feminist scholars they think are cool, and then shout out examples of research they like (i.e. done by people who they approve of) versus stuff they don't like (done by people they don't like). I kept thinking of data scientists I work with, many of them older men who didn't grow up in the US, and how I would love to recommend a book like this to them, so that they would think deeper about responsible use of data. But this book doesn't provide an accessible entry into this subject. I know the authors workshopped this manuscript - I just wish that in addition to consulting gender and cultural scholars, they had also been more intentional about running this work past more normies, maybe some of the ones who they mention were initially hostile to their project. Critical comments from that perspective would likely have resulted in a stronger product. </td>
+   <td style="text-align:left;"> Good Reads </td>
+   <td style="text-align:left;"> data feminism </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="c.-tidy-text-format" class="level3">
+<h3 class="anchored" data-anchor-id="c.-tidy-text-format">2c. Tidy Text format</h3>
+<p>Next, we will tidy our text using the tidytext and dplyr packages to split the text into tokens creating a table with one token per row. The token is under a column called word(). Another step to tidy the text is to remove the most common stop words such as a, the, is, are, and, etc. As mentioned previously, “art” is commonly connected to Canvas; therefore, we need to filter out “art.” We will take another look at the head of our tokenized text.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tokenize review words and keep all columns</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>review_tidy<span class="ot">&lt;-</span> df_reviews <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, review) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words)<span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(review, site, index)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>review_tidy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12,441 × 5
+   name    review       year         book          word          
+   &lt;chr&gt;   &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;         
+ 1 Sanjida Good Reads_1 Jan 08, 2021 data feminism thinking      
+ 2 Sanjida Good Reads_1 Jan 08, 2021 data feminism data          
+ 3 Sanjida Good Reads_1 Jan 08, 2021 data feminism science       
+ 4 Sanjida Good Reads_1 Jan 08, 2021 data feminism data          
+ 5 Sanjida Good Reads_1 Jan 08, 2021 data feminism ethics        
+ 6 Sanjida Good Reads_1 Jan 08, 2021 data feminism informed      
+ 7 Sanjida Good Reads_1 Jan 08, 2021 data feminism ideas         
+ 8 Sanjida Good Reads_1 Jan 08, 2021 data feminism intersectional
+ 9 Sanjida Good Reads_1 Jan 08, 2021 data feminism feminism.today
+10 Sanjida Good Reads_1 Jan 08, 2021 data feminism data          
+# … with 12,431 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="d.-word-frequencies" class="level3">
+<h3 class="anchored" data-anchor-id="d.-word-frequencies">2d. Word frequencies</h3>
+<p>The simplest word frequency analysis assesses the most common words in a text. We can use count to determine the most common words across all the text in the reviews on Data Feminism. Let’s quickly look at the word counts and then the frequencies across each site to see if reviewers use the same type of language to evaluate Data Feminism.</p>
+<p>We can see that “data,” “feminism,” and “book” are a few of the most popular words used in the Data Feminism book reviews. This make sense since the book’s title is <em>“Data Feminism”</em>. We also see the authors names and “science” as top words.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#show top 10 words across all review sites</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>review_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">70</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">reorder</span>(word, n)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(n, word)) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DF_review_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Before we go on, let us also get a better sense of how the word ’people is being used since it is in our top words. Wow, we see there are thirty-four reviews with the word people mentioned. Since many are long, let’s inspect three reviews using ggrepl().</p>
+<p>The first review proposes clarity for parameters and variables of measurment siting, <em>“I think we should consider what blindspots we may have, especially when doing research that impacts people and societies.”</em> The second review questions who the book audience should be stating, <em>“If it’s people with a background in feminist/intersectionality theory, it’s fundamentally pretty basic info (although the examples used to illustrate them are certainly interesting, albeit a few have that undergrad “I randomly picked something to use as an example in my paper and it’s due tomorrow so we’re just going with it ok” vibe).</em> The third review uses people in a broad sense of description from mentions in the book, <em>“It falls back to a depressingly-liberal theory of change after hitting the nail on the head about all sorts of stuff, even going so far as to quote people that certainly (and correctly) had more radical prescriptions about what to do with all this.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>review_tidy_people <span class="ot">&lt;-</span> df_reviews <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(review) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">'people'</span>, review))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>review_tidy_people <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n=</span><span class="dv">3</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"Three reviews include the word 'people'"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>Three reviews include the word 'people'</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> review </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> The authors of this book want us to be aware of our positionality, so I'll tell you that I've been a scientist in the field of genetics for over 20 years, more recently as a curator and manager of delivering data to the public. I'm also a woman of color who thinks a lot about ethics and equity. Which is to say, I really try to think critically about data, scientific and otherwise. I take this book literally. I fully agree that we need to look at what biases lay behind the hypotheses and interpretations of studies. I think scientists need to be clear in what parameters and variables are actually being measured, and whether it's meaningful to use certain categories at all (for instance, in my field, US racial categories are not very meaningful, and their use often obscures conclusions from data). I think it's important to define your terms, be as precise as you can and aware of how shorthand labels may mislead. I think we should consider what blindspots we may have, especially when doing research that impacts people and societies. And that interactions on an equal standing with people with different perspectives (professional and personal backgrounds) can help point out these blindspots. I think we should interrogate why certain jobs in STEM projects (e.g. curator vs data scientist) have more or less prestige, and what that says about our society. Therefore, I largely agree with the recommendations, such as they are, of this book. But I can't take this book seriously, because it frames these concepts, which I consider simply good practice, as feminism (by feminism, they mean an intersection of a gender+racial+class justice lens). Maybe I'm too much of a consequentialist, but my kneejerk reaction to this book was to reject putting the fetishization of identity ahead of practice. I was also hoping for more insights that would help in my professional life. Disappointingly, rather than give precise scenarios of study and analysis design, the authors tend to rely on quotes from feminist scholars they think are cool, and then shout out examples of research they like (i.e. done by people who they approve of) versus stuff they don't like (done by people they don't like). I kept thinking of data scientists I work with, many of them older men who didn't grow up in the US, and how I would love to recommend a book like this to them, so that they would think deeper about responsible use of data. But this book doesn't provide an accessible entry into this subject. I know the authors workshopped this manuscript - I just wish that in addition to consulting gender and cultural scholars, they had also been more intentional about running this work past more normies, maybe some of the ones who they mention were initially hostile to their project. Critical comments from that perspective would likely have resulted in a stronger product. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> This is a great read, overall -- thoughtful conceptual framework, well-used theory, a great message and a lively tone. I certainly found some beautiful lines/quotations and great new formulations for how to think &amp; speak about these topics in my workplace -- My main question mark about it is that I'm not entirely sure who the audience is. If it's people with a background in feminist/intersectionality theory, it's fundamentally pretty basic info (although the examples used to illustrate them are certainly interesting, albeit a few have that undergrad "I randomly picked something to use as an example in my paper and it's due tomorrow so we're just going with it ok" vibe). If it's data scientists who don't care about intersectionality, my suspicion is that it won't convince them. But if you're somewhere in the middle, or on one side with an interest in the other, I'm sure you'll pick at least something useful up! </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ironically, this book is potentially more harmful than something which is less correct in its diagnosis of the problems associated to data science and data collection writ large.This book repeatedly gets lots of things right, in terms of describing the problems that we see: the biases associated to data collection, the biases inherent in having machine learning systems developed by unrepresentative groups, the ways in which systems and data collection can reinforce existing (malicious) power structures, the racist / sexist epistemic assumptions baked into data collection / analysis, etc. It even goes so far as to make correct claims about the politics: the ineffective nature of white saviorism, education as not necessarily an emancipatory force, the existence of power dynamics that preclude political action, etc.Then what?! It ultimately leaves any of the broader structural analysis at the roadside (racial capitalism, the particular history and economics of the way that data science is used in our modern capitalist system, etc.), and gives a broad guide about how "we" ought to be teaching data science. It falls back to a depressingly-liberal theory of change after hitting the nail on the head about all sorts of stuff, even going so far as to quote people that _certainly_ (and correctly) had more radical prescriptions about what to do with all this.The word "capitalism" appears exactly 3 times in this entire 200 page text, and only in passing, which might just summarize the problem with the whole damned thing. If it were wrong, we could maybe dismiss it more easily, and therein lies the danger. </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="e-i.-permulation-of-word-frequency" class="level3">
+<h3 class="anchored" data-anchor-id="e-i.-permulation-of-word-frequency">2e-i. Permulation of Word Frequency</h3>
+<p>Let’s compare the word frequencies between Goodreads.com, Amazon.com, and the other category for book reviews.</p>
+<p>Words close to the line in the plots have similar frequencies across all the review sites.</p>
+<p>For example, words such as “data,” “book,” and “D’Ignazio” are relatively common and used with similar frequencies across most of the reviews. Words that are far from the line are found more in one review site than the other. Furthermore, words standing out above the line are shared across the review sites but not within that particular review site. For instance, “science” stands out above the line on the Amazon review site. This means that “science” is reasonably common across the entire review site but is not used as much on the Amazon review site. Words below the line are common in that review site but not across the whole site. The only one sticking out below the bar is on the Amazon site and is the number twelve.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate percent of word use across all novels</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tf_review<span class="ot">&lt;-</span> review_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">anti_join</span>(stop_words) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">count</span>(word) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">transmute</span>(word, <span class="at">all_words =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate percent of word use within each review</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>sf_review <span class="ot">&lt;-</span> review_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(review, <span class="fu">c</span>(<span class="st">"site"</span>, <span class="st">"index"</span>), </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">"_"</span>, <span class="at">convert =</span> <span class="cn">TRUE</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">anti_join</span>(stop_words) <span class="sc">%&gt;%</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">count</span>(site, word) <span class="sc">%&gt;%</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">site_words =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">left_join</span>(tf_review) <span class="sc">%&gt;%</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">arrange</span>(<span class="fu">desc</span>(site_words)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ungroup</span>()</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>sf_review <span class="sc">%&gt;%</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n=</span> <span class="dv">10</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">caption =</span> <span class="st">"Top words and their frequency across each review site "</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>Top words and their frequency across each review site </caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> site </th>
+   <th style="text-align:left;"> word </th>
+   <th style="text-align:right;"> n </th>
+   <th style="text-align:right;"> site_words </th>
+   <th style="text-align:right;"> all_words </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> other </td>
+   <td style="text-align:left;"> data </td>
+   <td style="text-align:right;"> 387 </td>
+   <td style="text-align:right;"> 0.0311068 </td>
+   <td style="text-align:right;"> 0.0636605 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Good Reads </td>
+   <td style="text-align:left;"> data </td>
+   <td style="text-align:right;"> 370 </td>
+   <td style="text-align:right;"> 0.0297404 </td>
+   <td style="text-align:right;"> 0.0636605 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Good Reads </td>
+   <td style="text-align:left;"> book </td>
+   <td style="text-align:right;"> 163 </td>
+   <td style="text-align:right;"> 0.0131018 </td>
+   <td style="text-align:right;"> 0.0207379 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> other </td>
+   <td style="text-align:left;"> power </td>
+   <td style="text-align:right;"> 83 </td>
+   <td style="text-align:right;"> 0.0066715 </td>
+   <td style="text-align:right;"> 0.0101278 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> other </td>
+   <td style="text-align:left;"> feminism </td>
+   <td style="text-align:right;"> 78 </td>
+   <td style="text-align:right;"> 0.0062696 </td>
+   <td style="text-align:right;"> 0.0128607 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Good Reads </td>
+   <td style="text-align:left;"> science </td>
+   <td style="text-align:right;"> 76 </td>
+   <td style="text-align:right;"> 0.0061088 </td>
+   <td style="text-align:right;"> 0.0120569 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Good Reads </td>
+   <td style="text-align:left;"> feminism </td>
+   <td style="text-align:right;"> 71 </td>
+   <td style="text-align:right;"> 0.0057069 </td>
+   <td style="text-align:right;"> 0.0128607 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> other </td>
+   <td style="text-align:left;"> book </td>
+   <td style="text-align:right;"> 64 </td>
+   <td style="text-align:right;"> 0.0051443 </td>
+   <td style="text-align:right;"> 0.0207379 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> other </td>
+   <td style="text-align:left;"> science </td>
+   <td style="text-align:right;"> 62 </td>
+   <td style="text-align:right;"> 0.0049835 </td>
+   <td style="text-align:right;"> 0.0120569 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Good Reads </td>
+   <td style="text-align:left;"> read </td>
+   <td style="text-align:right;"> 59 </td>
+   <td style="text-align:right;"> 0.0047424 </td>
+   <td style="text-align:right;"> 0.0063500 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sf_review, <span class="fu">aes</span>(<span class="at">x =</span> site_words, <span class="at">y =</span> all_words, <span class="at">color =</span> <span class="fu">abs</span>(all_words <span class="sc">-</span> site_words))) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_abline</span>(<span class="at">color =</span> <span class="st">"gray40"</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">width =</span> <span class="fl">0.3</span>, <span class="at">height =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> word), <span class="at">check_overlap =</span> <span class="cn">TRUE</span>, <span class="at">vjust =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>()) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_y_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>()) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_color_gradient</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.001</span>), <span class="at">low =</span> <span class="st">"darkslategray4"</span>, <span class="at">high =</span> <span class="st">"gray75"</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">facet_wrap</span>(<span class="sc">~</span> site, <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Data Feminism Review word frequency"</span>, <span class="at">x =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DF_review_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="e-ii.-statistical-significance" class="level3">
+<h3 class="anchored" data-anchor-id="e-ii.-statistical-significance">2e-ii. Statistical Significance</h3>
+<p>To answer our first research question, <strong>“Can we quantify the word frequencies used between the sites on Data Feminism book reviews?”</strong> We must look at how correlated the word frequencies between the entire review sites and each separate review site are. We can quantify this with a correlation test to see if the numbers are statistically significant.</p>
+<ul>
+<li>Looks like high correlations between sites, which are statistically significant at <em>p &lt;.05</em>, suggesting that the relationship between the word frequencies is highly similar across the reviews on the review sites.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sf_review <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(site) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">correlation =</span> <span class="fu">cor</span>(site_words, all_words),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">p_value =</span> <span class="fu">cor.test</span>(site_words, all_words)<span class="sc">$</span>p.value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  site       correlation   p_value
+  &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+1 Amazon           0.868 2.43e-128
+2 Good Reads       0.982 0        
+3 other            0.975 0        </code></pre>
+</div>
+</div>
+</section>
+<section id="f.-document-term-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="f.-document-term-matrix">2f. Document Term Matrix</h3>
+<p>To answer our other research questions, we will have to perform an Unsupervised modeling technique <em>topic modeling</em> to see if we can understand themes from the book reviews combined.</p>
+<p>We will treat each individual review as a unique “document.” first, we need to create a <em>Document Term Matrix (dtm)</em>. Using the count() function for how many times each word occurs in each document or index in our case. Then create a matrix that contains one row per post as our original data frame did, but now includes a column for each word in the entire corpus and a value of n for how many times that word occurs in each post. I decided to combine the site name, index number and review.</p>
+<p>Additionally, I decided to remove the authors names, “book,” and the word “authors.” We know that these will be prevalent and do not provide new insight for this analysis.</p>
+<p>We see that our document term matrix has 133 documents and 3785 terms with a sparsity of 98%. Great!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tokenize our reviews text (this is the same step we did in wrangle but don't include every variable)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>review_tidy <span class="ot">&lt;-</span> df_reviews <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">output =</span> word, <span class="at">input =</span> review) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words, <span class="at">by =</span> <span class="st">"word"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(review, site, index)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#my_stop_words</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>my_stop_words <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(stop_words,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">tibble</span>(<span class="at">word =</span> <span class="fu">c</span>(<span class="st">"dignazio"</span>,<span class="st">"d ignazio"</span>,<span class="st">"d'ignazio"</span>,<span class="st">"D’Ignazio"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"klein"</span>, <span class="st">"catherine"</span>,<span class="st">"book"</span>,<span class="st">"lauren"</span>, <span class="st">"author"</span>, <span class="st">"authors"</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">as.character</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>),<span class="at">lexicon =</span><span class="fu">rep</span>(<span class="st">"custom"</span>, <span class="dv">30</span>))))</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>word_counts <span class="ot">&lt;-</span> review_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(my_stop_words) <span class="sc">%&gt;%</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(review, word, <span class="at">sort =</span> <span class="cn">TRUE</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co">#create dtm</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>research_dtm <span class="ot">&lt;-</span> word_counts <span class="sc">%&gt;%</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(review, word) <span class="sc">%&gt;%</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cast_dtm</span>(review, word, n) <span class="sc">%&gt;%</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;&lt;DocumentTermMatrix (documents: 133, terms: 3785)&gt;&gt;
+Non-/sparse entries: 8972/494433
+Sparsity           : 98%
+Maximal term length: 30
+Weighting          : term frequency (tf)</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="model" class="level2">
+<h2 class="anchored" data-anchor-id="model">3 Model</h2>
+<p>We need to pull out the topics from each document with our mixture model and try and locate a good K-Means number.</p>
+<section id="a.-finding-k" class="level3">
+<h3 class="anchored" data-anchor-id="a.-finding-k">3a. Finding K</h3>
+<p>I do not have a good idea of how many topics might be within the reviews. Bail(2018) notes, “the results of topic models should not be over-interpreted unless the researcher has strong theoretical apriori about the number of topics in a given corpus.”</p>
+<p>I will try and flesh out topics with a few finding K value techniques: - <strong>a-i</strong>. n_distinct() function from the dplyr package to find the number of unique site names in our book review data. - <strong>a-ii</strong>. Use the ldatuning package to calculate and plot the preferable number of topics for the LDA model. - <strong>a-iii</strong>. Try the toLDAvis() function, which provides great visualizations for exploring the topic and word distributions using the LDAvis topic browser.</p>
+<section id="a-i.-the-n_distinct-method." class="level4">
+<h4 class="anchored" data-anchor-id="a-i.-the-n_distinct-method."><strong>a-i.</strong> The n_distinct method.</h4>
+<p>The n_distinct () function shows us that there are three unique site names.We divided up our reviews into three categories under the variable “site.” I am not sure that three topics will provide much insight. Let us look at two other ways to find topic counts.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(df_reviews<span class="sc">$</span>site)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+</section>
+<section id="a-ii.-ldatuning-package-method" class="level4">
+<h4 class="anchored" data-anchor-id="a-ii.-ldatuning-package-method"><strong>a-ii.</strong> ldatuning Package method</h4>
+<p>We use the FindTopicsNumber to find topics using the research_dtm for a sequence of 5-50, counting by 5. Trying different sequences gave me the same Griffiths2004 metric results with an inflection point at <strong>10</strong>. Now let’s look at the LDAvis method.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>k_metrics <span class="ot">&lt;-</span> <span class="fu">FindTopicsNumber</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  research_dtm,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">topics =</span> <span class="fu">seq</span>(<span class="dv">05</span>, <span class="dv">50</span>, <span class="at">by =</span> <span class="dv">5</span>),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="st">"Griffiths2004"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"Gibbs"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">control =</span> <span class="fu">list</span>(),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">mc.cores =</span> <span class="cn">NA</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">return_models =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">libpath =</span> <span class="cn">NULL</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">FindTopicsNumber_plot</span>(k_metrics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DF_review_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="a-iii.-ldavis-method" class="level4">
+<h4 class="anchored" data-anchor-id="a-iii.-ldavis-method"><strong>a-iii.</strong> LDAvis method</h4>
+<p>Another technique we will use is the LDAvis visualization, which shows us whether topics are overlapping and by how much. This technique uses the <em>structured topic model</em>, First nwe will run the STM unsupervised model before running the LDAvis model. We will use ten as the topic number we got from the Griffiths2014 metric.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">textProcessor</span>(df_reviews<span class="sc">$</span>review, </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">metadata =</span> df_reviews,  </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">lowercase=</span><span class="cn">TRUE</span>, </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">removestopwords=</span><span class="cn">TRUE</span>, </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">removenumbers=</span><span class="cn">TRUE</span>,  </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">removepunctuation=</span><span class="cn">TRUE</span>, </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">wordLengths=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="cn">Inf</span>),</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">stem=</span><span class="cn">TRUE</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">onlycharacter=</span> <span class="cn">FALSE</span>, </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">striphtml=</span><span class="cn">TRUE</span>, </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">customstopwords=</span><span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Building corpus... 
+Converting to Lower Case... 
+Removing punctuation... 
+Removing stopwords... 
+Removing numbers... 
+Stemming... 
+Creating Output... </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>docs <span class="ot">&lt;-</span> temp<span class="sc">$</span>documents </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> temp<span class="sc">$</span>meta </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>vocab <span class="ot">&lt;-</span> temp<span class="sc">$</span>vocab </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>review_stm <span class="ot">&lt;-</span> <span class="fu">stm</span>(<span class="at">documents=</span>docs, </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">data=</span>meta,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">vocab=</span>vocab, </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">prevalence =</span><span class="sc">~</span> index,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">K=</span><span class="dv">10</span>,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">max.em.its=</span><span class="dv">25</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>review_stm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A topic model with 10 topics, 134 documents and a 3010 word dictionary.</code></pre>
+</div>
+</div>
+<p>When we run the LDAvis, we can see that there are a few overlapping topics. When I ran higher numbers there was severe overlap within the topics. Here we are not seeing that, which means we should be able to identify topics or themes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toLDAvis</span>(<span class="at">mod =</span> review_stm, <span class="at">docs =</span> docs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/lda_png.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">K-Means LDAvis</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="b.-fit-lda-model-for-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="b.-fit-lda-model-for-analysis">3b. Fit LDA model for analysis</h3>
+<p>I started with K= 10 topics but decided to reduce the number to seven after many attmempts in understanding the topics. Seven seemed to be the most identifiable number.</p>
+<p>Let’s fit the LDA model with ten topics to a Latent Dirichlet Allocation (LDA) topic modeling technique to extract topics from the corpus.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">7</span> <span class="co">#number of topics</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>seed <span class="ot">=</span> <span class="dv">1234</span> <span class="co">#necessary for reproducibility</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#fit the model </span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#you could have more control parameters but will just use seed here</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>review_lda <span class="ot">&lt;-</span> <span class="fu">LDA</span>(research_dtm, <span class="at">k =</span> k, <span class="at">method =</span> <span class="st">"GIBBS"</span>, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">seed =</span> seed))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="explore" class="level2">
+<h2 class="anchored" data-anchor-id="explore">4 Explore</h2>
+<section id="a.-beta-terms" class="level3">
+<h3 class="anchored" data-anchor-id="a.-beta-terms">4a. Beta terms</h3>
+<p>Looking at Beta occurrence for each term we can see some overarching themes. But let’s compare this to the STM model as well to see if there are similaritites before “reading the Tea Leaves.”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>word_chart <span class="ot">&lt;-</span> <span class="cf">function</span>(data, input, title) {</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  data <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#set y = 1 to just plot one variable and use word as the label</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">as.factor</span>(row), <span class="dv">1</span>, <span class="at">label =</span> input, <span class="at">fill =</span> <span class="fu">factor</span>(topic) )) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#you want the words, not the points</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"transparent"</span>) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#make sure the labels don't overlap</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">nudge_x =</span> .<span class="dv">1</span>,  </span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">direction =</span> <span class="st">"y"</span>,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">box.padding =</span> <span class="fl">0.1</span>,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">segment.color =</span> <span class="st">"transparent"</span>,</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>topic) <span class="sc">+</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_plot</span>() <span class="sc">+</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>        <span class="co">#axis.title.x = element_text(size = 9),</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="st">"lightgray"</span>, <span class="at">fill =</span> <span class="cn">NA</span>),</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">title =</span> title) <span class="sc">+</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">#xlab(NULL) + ylab(NULL) +</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">#ggtitle(title) +</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>num_words <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co">#number of words to visualize</span></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a><span class="co">#create function that accepts the lda model and num word to display</span></span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>top_terms_per_topic <span class="ot">&lt;-</span> <span class="cf">function</span>(lda_model, num_words) {</span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">#tidy LDA object to get word, topic, and probability (beta)</span></span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>topics_tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(lda_model, <span class="at">matrix =</span> <span class="st">"beta"</span>)</span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>  top_terms <span class="ot">&lt;-</span> topics_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(topic) <span class="sc">%&gt;%</span></span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(topic, <span class="fu">desc</span>(beta)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>  <span class="co">#get the top num_words PER topic</span></span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">seq_len</span>(num_words)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(topic, beta) <span class="sc">%&gt;%</span></span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a>  <span class="co">#row is required for the word_chart() function</span></span>
+<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">row =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a>  <span class="co">#add the word Topic to the topic labels</span></span>
+<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">topic =</span> <span class="fu">paste</span>(<span class="st">"Topic"</span>, topic, <span class="at">sep =</span> <span class="st">" "</span>))</span>
+<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a>  <span class="co">#create a title to pass to word_chart</span></span>
+<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"LDA Top Terms for"</span>, k, <span class="st">"Topics"</span>)</span>
+<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a>  <span class="co">#call the word_chart function </span></span>
+<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">word_chart</span>(top_terms, top_terms<span class="sc">$</span>term, title)</span>
+<span id="cb22-52"><a href="#cb22-52" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-53"><a href="#cb22-53" aria-hidden="true" tabindex="-1"></a><span class="fu">top_terms_per_topic</span>(review_lda, num_words)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DF_review_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>STM Model</p>
+<p>The STM model has a lot of words that we will need to go back and take out. Otherwise the themes here are overlapping and hard to make out. Mainly that we should read the Data Feminism book by D’Ignazio and Klein. Topic one could have an overarching theme about integrating the practices of intersectional Data Feminism. Which is similar to the topic for number 7 in our LDA model.</p>
+<div class="cell" data-wasning="false">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">textProcessor</span>(df_reviews<span class="sc">$</span>review, </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">metadata =</span> df_reviews,  </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">lowercase=</span><span class="cn">TRUE</span>, </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">removestopwords=</span><span class="cn">TRUE</span>, </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">removenumbers=</span><span class="cn">TRUE</span>,  </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">removepunctuation=</span><span class="cn">TRUE</span>, </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">wordLengths=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="cn">Inf</span>),</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">stem=</span><span class="cn">FALSE</span>,</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">onlycharacter=</span> <span class="cn">FALSE</span>, </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">striphtml=</span><span class="cn">TRUE</span>, </span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">customstopwords=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Building corpus... 
+Converting to Lower Case... 
+Removing punctuation... 
+Removing stopwords... 
+Remove Custom Stopwords...
+Removing numbers... 
+Creating Output... </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>docs <span class="ot">&lt;-</span> temp<span class="sc">$</span>documents </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>meta <span class="ot">&lt;-</span> temp<span class="sc">$</span>meta </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>vocab <span class="ot">&lt;-</span> temp<span class="sc">$</span>vocab </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>review_stm <span class="ot">&lt;-</span> <span class="fu">stm</span>(<span class="at">documents=</span>docs, </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">data=</span>meta,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">vocab=</span>vocab, </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">prevalence =</span><span class="sc">~</span> index,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">K=</span><span class="dv">7</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">max.em.its=</span><span class="dv">25</span>,</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(review_stm, <span class="at">type =</span> <span class="st">"summary"</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.6</span>), <span class="at">n=</span> <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DF_review_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="b.-investigating-term-within-a-topic---beta" class="level3">
+<h3 class="anchored" data-anchor-id="b.-investigating-term-within-a-topic---beta">4b. Investigating term within a topic - Beta</h3>
+<p>As Siles(2015) explains we will use Beta to tell us the probability of that term being generated from that topic for that document and visualize it. We can see the dominant word “data” is in the book reviews.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tidy the lda model</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>tidy_lda <span class="ot">&lt;-</span> <span class="fu">tidy</span>(review_lda)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#get the data into top 6 terms</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>top_terms <span class="ot">&lt;-</span> tidy_lda <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(topic)<span class="sc">%&gt;%</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(beta, <span class="at">n =</span> <span class="dv">6</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()<span class="sc">%&gt;%</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(topic, <span class="sc">-</span>beta)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#visualize top ten terms within each topic</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>top_terms <span class="sc">%&gt;%</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">topic =</span> <span class="fu">factor</span>(topic),</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">term =</span> <span class="fu">reorder_within</span>(term, beta, topic)) <span class="sc">%&gt;%</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(term, beta, <span class="at">fill =</span> <span class="fu">log</span>(beta))) <span class="sc">+</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>, <span class="at">color=</span> <span class="st">"grey20"</span>, <span class="at">size=</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_reordered</span>() <span class="sc">+</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> topic, <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"RdYlBu"</span>) <span class="sc">+</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">'none'</span>,</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span> <span class="dv">10</span>),</span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="st">"cm"</span>)) <span class="sc">+</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> <span class="st">"Top 6 terms in each LDA topic"</span>, <span class="at">x=</span> (<span class="cn">NULL</span>), <span class="at">y=</span> <span class="fu">expression</span>(beta))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DF_review_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="c.-investigate-the-topics-associated-with-each-index-numberbook-review." class="level3">
+<h3 class="anchored" data-anchor-id="c.-investigate-the-topics-associated-with-each-index-numberbook-review.">4c. Investigate the topics associated with each index number(book review).</h3>
+<ul>
+<li><ol type="i">
+<li>We can do this by looking at the “gamma” probability that each topic belongs in each topic. We can’t use the “site”variable because it will not give us the unique reviews. After our model has assigned the probability to each of the topics we can visualize the distribution of probabilities to all topics.</li>
+</ol></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>lda_gamma <span class="ot">&lt;-</span> <span class="fu">tidy</span>(review_lda, <span class="at">matrix =</span> <span class="st">"gamma"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lda_gamma, <span class="fu">aes</span>(gamma)) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of probabilities for all topics"</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of documents"</span>, <span class="at">x =</span> <span class="fu">expression</span>(gamma))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DF_review_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li><ol start="2" type="i">
+<li>Also, we can also visualize how the probabilities are distribution within each individual topic. It looks like <em>Topic 4</em> has probablities that do not belong in the topic and none that do. We are looking for documents closer to 1 that are discriminate as belonging to a topic or not. Since we do not see that they are sorted nicely we will run a a model that shows how our model did at sorting the topics from each book review site.</li>
+</ol></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>site_gamma <span class="ot">&lt;-</span> lda_gamma <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(document, <span class="fu">c</span>(<span class="st">"site"</span>, <span class="st">"index"</span>), <span class="at">sep =</span> <span class="st">"_"</span>, <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(site_gamma, <span class="fu">aes</span>(gamma, <span class="at">fill =</span> <span class="fu">as.factor</span>(topic))) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha =</span> .<span class="dv">6</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>, <span class="at">bins=</span><span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>topic, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of probability for each topic"</span>,</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of documents"</span>, <span class="at">x =</span> <span class="fu">expression</span>(gamma))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DF_review_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="d." class="level3">
+<h3 class="anchored" data-anchor-id="d.">4d.</h3>
+<p>We can check our per-document-per-topic probabilities to see how well our unsupervised learning did at distinguishing the three site containg book reviews.</p>
+<p>We notice that almost all of the reviews from Amazon, and the blog sites(“other”) were almost always uniquely identified as a single topic. Ther is some variance but it looks like more reviews from the Goodreads site were somewhat associated with other topics.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>site_gamma <span class="ot">&lt;-</span> lda_gamma <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(document, <span class="fu">c</span>(<span class="st">"site"</span>, <span class="st">"index"</span>), <span class="at">sep =</span> <span class="st">"_"</span>, <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># re-rank top topic terms for topic names</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>site_gamma <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Site =</span> <span class="fu">reorder</span>(site, gamma <span class="sc">*</span> topic)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">factor</span>(topic), gamma)) <span class="sc">+</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> site) <span class="sc">+</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"topic"</span>, <span class="at">y =</span> <span class="fu">expression</span>(gamma))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DF_review_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="e.-tsne-clustering-terms-in-2-dimensional-space" class="level3">
+<h3 class="anchored" data-anchor-id="e.-tsne-clustering-terms-in-2-dimensional-space">4e. tSNE Clustering Terms in 2-Dimensional Space</h3>
+<p>Lets use a t-SNE (t-distributed stochastic neighbor) model to can see the distance between each topics and which ones tend to cluster together.</p>
+<p>We can see that there are several topics clustering together in two main groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>topicLabels<span class="ot">&lt;-</span> top_terms <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(topic, <span class="fu">desc</span>(beta)) <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(topic)<span class="sc">%&gt;%</span> </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Order=</span> <span class="fu">order</span>(<span class="fu">desc</span>(beta))) <span class="sc">%&gt;%</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Order <span class="sc">&lt;</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Label=</span> <span class="fu">str_c</span>(term, <span class="at">collapse=</span><span class="st">" "</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">topic=</span> <span class="fu">str_sub</span>(topic, <span class="dv">7</span>),</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">Label=</span> <span class="fu">paste0</span>(topic,<span class="st">": "</span>, <span class="fu">str_to_sentence</span>(Label)),</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">topic=</span> <span class="fu">as.numeric</span>(topic)) </span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>mytSNE<span class="ot">&lt;-</span> <span class="cf">function</span>(thematrix){</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  perplex<span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">sqrt</span>(<span class="fu">nrow</span>(thematrix)))</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>  res<span class="ot">&lt;-</span> Rtsne<span class="sc">::</span><span class="fu">Rtsne</span>(thematrix, <span class="at">dims=</span> <span class="dv">2</span>, <span class="at">perplexity=</span> <span class="dv">1</span>)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>  resdf<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span> res<span class="sc">$</span>Y[,<span class="dv">1</span>], <span class="at">y=</span> res<span class="sc">$</span>Y[,<span class="dv">2</span>])</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>  resdf<span class="sc">$</span>x<span class="ot">&lt;-</span> resdf<span class="sc">$</span>x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">nrow</span>(resdf),<span class="dv">0</span>, <span class="fl">0.2</span>)  <span class="co"># Add some noise </span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>  resdf<span class="sc">$</span>y<span class="ot">&lt;-</span> resdf<span class="sc">$</span>y <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">nrow</span>(resdf),<span class="dv">0</span>, <span class="fl">0.2</span>)</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(resdf)</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>bt<span class="ot">&lt;-</span>      review_lda <span class="sc">%&gt;%</span> <span class="fu">tidy</span>(<span class="at">matrix=</span> <span class="st">"beta"</span>) <span class="sc">%&gt;%</span> <span class="fu">spread</span>(term, beta) </span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>hc<span class="ot">&lt;-</span>      bt <span class="sc">%&gt;%</span> <span class="fu">dist</span>() <span class="sc">%&gt;%</span> <span class="fu">hclust</span>(<span class="at">method=</span> <span class="st">"ward.D"</span>)</span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dendextend)</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Rtsne)</span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>tsne<span class="ot">&lt;-</span>    <span class="fu">mytSNE</span>(bt) <span class="sc">%&gt;%</span></span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">text=</span><span class="fu">str_wrap</span>(topicLabels<span class="sc">$</span>Label,<span class="dv">5</span>), <span class="at">color=</span> <span class="fu">cutree</span>(hc, <span class="at">h=</span><span class="fl">0.12</span>))</span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tsne, <span class="fu">aes</span>(<span class="at">x=</span> x, <span class="at">y=</span>y, <span class="at">color=</span> <span class="fu">factor</span>(color))) <span class="sc">+</span></span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label=</span> text), <span class="at">segment.alpha=</span> <span class="dv">0</span>, <span class="at">fontface=</span> <span class="st">"bold"</span>)  <span class="sc">+</span></span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>,<span class="st">"Set2"</span>)) <span class="sc">+</span></span>
+<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> <span class="st">"Cluster topics in 2-Dimensional Space (tSNE)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DF_review_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="f.-biterm-model-for-short-sentence-documents" class="level3">
+<h3 class="anchored" data-anchor-id="f.-biterm-model-for-short-sentence-documents">4f. Biterm model for short sentence documents</h3>
+<p>Finally, let’s look at a biterm model</p>
+<p>Take original data frame and change column names to be fed correctly</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>btm <span class="ot">&lt;-</span> df_reviews<span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">text =</span> <span class="st">"review"</span>,</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">doc_id =</span> <span class="st">"index"</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>btm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 134 × 6
+   doc_id name            year         text                          site  book 
+    &lt;int&gt; &lt;chr&gt;           &lt;chr&gt;        &lt;chr&gt;                         &lt;chr&gt; &lt;chr&gt;
+ 1      1 Sanjida         Jan 08, 2021 "A new way of thinking about… Good… data…
+ 2      2 Harsh           Nov 05, 2020 "The authors of this book wa… Good… data…
+ 3      3 Nikki Sojkowski Oct 16, 2020 "Let me begin this review by… Good… data…
+ 4      4 Clàudia         Jun 02, 2020 "This is a fantastic introdu… Good… data…
+ 5      5 Jill            May 10, 2021 "4.5* stars but rounding to … Good… data…
+ 6      6 Paz             Sep 14, 2020 "This is a great read, overa… Good… data…
+ 7      7 Casey           Nov 25, 2020 "This book ignores the ideol… Good… data…
+ 8      8 Leonardo Longo  Mar 28, 2022 "A book called \"Data Femini… Good… data…
+ 9      9 Ed Summers      Dec 14, 2020 "Catherine D'Ignazio and Lau… Good… data…
+10     10 Mengyuan Zhang  Apr 08, 2021 "I used this book as a textb… Good… data…
+# … with 124 more rows</code></pre>
+</div>
+</div>
+<p>The Biterm Topic Model (BTM) is a word co-occurrence based topic model that learns topics by modeling word-word co-occurrences patterns (e.g., biterms)</p>
+<p>A biterm consists of two words co-occurring in the same context, for example, in the same short text window.</p>
+<p>BTM models the biterm occurrences in a corpus (unlike LDA models which model the word occurrences in a document).</p>
+<p>It’s a generative model. In the generation procedure, a biterm is generated by drawing two words independently from a same topic z. In other words, the distribution of a biterm b=(wi,wj) is defined as: P(b) = ∑_k{P(wi|z)<em>P(wj|z)</em>P(z)} where k is the number of topics you want to extract.</p>
+<p>Estimation of the topic model is done with the Gibbs sampling algorithm. Where estimates are provided for P(w|k)=phi and P(z)=theta.</p>
+<p>udpipe R package performs Parts of Speech tagging on the package title and descriptions and extracts cooccurrences of nouns, adjectives and verbs within 3 words distance.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(udpipe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'udpipe' was built under R version 4.2.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'data.table' was built under R version 4.2.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'data.table'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dendextend':
+
+    set</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:dplyr':
+
+    between, first, last</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    transpose</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stopwords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'stopwords'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:tm':
+
+    stopwords</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BTM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'BTM' was built under R version 4.2.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>dl <span class="ot">&lt;-</span> <span class="fu">udpipe_download_model</span>(<span class="at">language =</span> <span class="st">"english"</span>) <span class="co">#make sure this installs or it will not evaluate POS</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Downloading udpipe model from https://raw.githubusercontent.com/jwijffels/udpipe.models.ud.2.5/master/inst/udpipe-ud-2.5-191206/english-ewt-ud-2.5-191206.udpipe to C:/Users/User/Documents/RProj22/Biterm_twitter/english-ewt-ud-2.5-191206.udpipe</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code> - This model has been trained on version 2.5 of data from https://universaldependencies.org</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code> - The model is distributed under the CC-BY-SA-NC license: https://creativecommons.org/licenses/by-nc-sa/4.0</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code> - Visit https://github.com/jwijffels/udpipe.models.ud.2.5 for model license details.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code> - For a list of all models and their licenses (most models you can download with this package have either a CC-BY-SA or a CC-BY-SA-NC license) read the documentation at ?udpipe_download_model. For building your own models: visit the documentation by typing vignette('udpipe-train', package = 'udpipe')</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Downloading finished, model stored at 'C:/Users/User/Documents/RProj22/Biterm_twitter/english-ewt-ud-2.5-191206.udpipe'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>udmodel_english <span class="ot">&lt;-</span> <span class="fu">udpipe_load_model</span>(<span class="at">file =</span> dl<span class="sc">$</span>file_model)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">udpipe_annotate</span>(udmodel_english, btm<span class="sc">$</span>text)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(s)</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   32209 obs. of  14 variables:
+ $ doc_id       : chr  "doc1" "doc1" "doc1" "doc1" ...
+ $ paragraph_id : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ sentence_id  : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ sentence     : chr  "A new way of thinking about data science and data ethics that is informed by the ideas of intersectional femini"| __truncated__ "A new way of thinking about data science and data ethics that is informed by the ideas of intersectional femini"| __truncated__ "A new way of thinking about data science and data ethics that is informed by the ideas of intersectional femini"| __truncated__ "A new way of thinking about data science and data ethics that is informed by the ideas of intersectional femini"| __truncated__ ...
+ $ token_id     : chr  "1" "2" "3" "4" ...
+ $ token        : chr  "A" "new" "way" "of" ...
+ $ lemma        : chr  "a" "new" "way" "of" ...
+ $ upos         : chr  "DET" "ADJ" "NOUN" "SCONJ" ...
+ $ xpos         : chr  "DT" "JJ" "NN" "IN" ...
+ $ feats        : chr  "Definite=Ind|PronType=Art" "Degree=Pos" "Number=Sing" NA ...
+ $ head_token_id: chr  "3" "3" "0" "5" ...
+ $ dep_rel      : chr  "det" "amod" "root" "mark" ...
+ $ deps         : chr  NA NA NA NA ...
+ $ misc         : chr  NA NA NA NA ...</code></pre>
+</div>
+</div>
+<p>Look at the table of word occurances by</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(x<span class="sc">$</span>upos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  ADJ   ADP   ADV   AUX CCONJ   DET  INTJ  NOUN   NUM  PART  PRON PROPN PUNCT 
+ 2453  3079  1628  1478  1491  2497    19  7371   252   885  2138   827  3814 
+SCONJ   SYM  VERB     X 
+  639    32  3552    54 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>anno    <span class="ot">&lt;-</span> <span class="fu">udpipe</span>(btm, <span class="st">"english"</span>, <span class="at">trace =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2022-11-14 11:47:10 Annotating text fragment 1/134
+2022-11-14 11:47:13 Annotating text fragment 11/134
+2022-11-14 11:47:20 Annotating text fragment 21/134
+2022-11-14 11:47:23 Annotating text fragment 31/134
+2022-11-14 11:47:29 Annotating text fragment 41/134
+2022-11-14 11:47:32 Annotating text fragment 51/134
+2022-11-14 11:47:33 Annotating text fragment 61/134
+2022-11-14 11:47:34 Annotating text fragment 71/134
+2022-11-14 11:47:34 Annotating text fragment 81/134
+2022-11-14 11:47:35 Annotating text fragment 91/134
+2022-11-14 11:47:35 Annotating text fragment 101/134
+2022-11-14 11:47:37 Annotating text fragment 111/134
+2022-11-14 11:47:38 Annotating text fragment 121/134
+2022-11-14 11:47:55 Annotating text fragment 131/134</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>biterms <span class="ot">&lt;-</span> <span class="fu">as.data.table</span>(anno)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>biterms <span class="ot">&lt;-</span> biterms[, <span class="fu">cooccurrence</span>(<span class="at">x =</span> lemma,</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">relevant =</span> upos <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"NOUN"</span>,</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>                                                         <span class="st">"ADJ"</span>,</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>                                                         <span class="st">"PROPN"</span>),</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">skipgram =</span> <span class="dv">5</span>),</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>                   by <span class="ot">=</span> <span class="fu">list</span>(doc_id)]</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Build BTM</span></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">588</span>)</span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>traindata <span class="ot">&lt;-</span> <span class="fu">subset</span>(anno, upos <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"NOUN"</span>, <span class="st">"ADJ"</span>, <span class="st">"PROPN"</span>))</span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>traindata <span class="ot">&lt;-</span> traindata[, <span class="fu">c</span>(<span class="st">"doc_id"</span>, <span class="st">"lemma"</span>)]</span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">BTM</span>(traindata, <span class="at">k =</span> <span class="dv">10</span>, </span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>             <span class="at">beta =</span> <span class="fl">0.01</span>, </span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">iter =</span> <span class="dv">500</span>,</span>
+<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a>             <span class="at">biterms =</span> biterms, </span>
+<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>             <span class="at">trace =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2022-11-14 11:48:17 Start Gibbs sampling iteration 1/500
+2022-11-14 11:48:18 Start Gibbs sampling iteration 101/500
+2022-11-14 11:48:19 Start Gibbs sampling iteration 201/500
+2022-11-14 11:48:21 Start Gibbs sampling iteration 301/500
+2022-11-14 11:48:23 Start Gibbs sampling iteration 401/500</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot Model Results (do not run when knitting)</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(textplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'textplot' was built under R version 4.2.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggraph)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggraph' was built under R version 4.2.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(concaveman)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'concaveman' was built under R version 4.2.1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model,</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_n =</span> <span class="dv">7</span>,<span class="at">title =</span> <span class="st">"BTM model"</span>,</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"K = 10 , 500 Training Iterations"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="DF_review_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="communicate" class="level2">
+<h2 class="anchored" data-anchor-id="communicate">5 Communicate</h2>
+<p><strong>Purpose:</strong> The purpose of the case study was to investigate the book reviews on the* “Data Feminism”* book. This analysis explores common words and themes across all reviews, examining the rich conversations and potential uses in practice.</p>
+<p><strong>Methods:</strong> - tokenizing and counting words in each document, - unsupervised learning that views bags of words called Latent Dirichlet Allocation, -quantified the number of K topics across all documents, - Beta is a per-topic word distribution - Alpha is a per-document topic distribution - Gamma looks at word contribution per topic - t-SNE looks at distance and cluster information</p>
+<p><strong>Findings:</strong></p>
+<p>This type of analysis can be used by researchers interested in modern-day thoughts on a topic or theory. Searching for public reviews or a literature review would produce similar results.</p>
+<p>Not surprisingly, many reviews included famous words from the book title like “data” and “feminism.” Deciding whether or not to remove them was decided on because of their value. A reviewer may be speaking about how to incorporate Data Feminism into practice or policy. We did see that seven was an ideal number to get themes. When looking back at some of the topics, we could almost place them into the seven principles that D’Ignazio and Klein revealed in the book.</p>
+<p>The topics and words that are correlated to the Data Feminism principles:</p>
+<ul>
+<li>Topic 7 data, visualizations, world, and intersectional theory (how power operates in the worlds) seem to correlate with Principle 1 <em>Examine power.</em></li>
+<li>Topic 4 race, research, power, and the invisible ( challenge unequal power structures) seem to correlate with principle 2 <em>Challenge power.</em></li>
+<li>Topic 7 data, visualizations, world, and intersectional theory (value multiple forms of knowledge) correlate with principle 3 <em>Work towards justice.</em></li>
+<li>Topic 5 data, emotion, society, and critical theory (data is from somebody) seem to correlate with principle 3 <em>Elevate emotion &amp; embodiment.</em></li>
+<li>Topic 1 gender, oppression, objective, and academic (breaking down tools of oppression) seem to correlate with principle <em>Rethink binaries &amp; hierarchies.</em></li>
+<li>Topic 6 - pluralism, algorithms, structural and visible (seek multiple perspectives) seem to correlate with <em>Embrace pluralism.</em></li>
+<li>Topic 2 - hierarchies, labor, justice, and analysis (letting the data speak for itself ) seem to correlate with principle 6 <em>Consider context.</em></li>
+<li>Topic 4 - invisible, power, race, research (“[…]true cost and planetary consequences of data work” (D’Ignazio &amp; Klein, 2020, p.&nbsp;201)) seem to correlate with principle 7 <em>Make labor visible.</em></li>
+</ul>
+<p><strong>Discussion:</strong></p>
+<p>There are many ways to incorporate Data Feminism principles into everyday research and work. For instance:</p>
+<p>More and more research is emerging on evaluating and examining knowledgeable agents of the digital in social media platforms. Gleaning into social media hashtag communities identifying the self-defined social identities and how the communities navigate a racialized and gendered society. Collecting the raw data from a Twitter hashtag is not enough to analyze the sentiment of a research topic. D’Ignazio and Klein suggest that “one must understand the culture and incorporate an examination of power.” Understanding what data to capture and then including or excluding it in the analysis—constantly bringing a feminist lens on who the data impacts or possible harms.</p>
+<p>When seeking grant opportunities incorporating a diversified team will allow for a well-rounded understanding of what treatment you are including. “Power imbalances are everywhere in data science: in our datasets, in our data products, and in the environments that enable our data work” (D’Ignazio and Klein, 2015).</p>
+<p>When putting together survey data, try to include the concepts of sexual orientation, gender identity, and sexual expression, depending on the suitability of the study. It was clear that the study of intersectional feminism was prevalent in the book reviews. From the top words in the topic, we can see concern about power imbalances, data ethics, and justice when it comes to data science and what data is produced. Feminism is not “only” for cisgender females but for disadvantaged groups except the powerful men of male-dominated societies. We continue to see the inequalities transferred to the digital environment. Data Femisinsm’s framework is a good starting point for those in Data Science, Learning Analytics, or any field collecting, disseminating, or engineering data.</p>
+<p><strong>References:</strong></p>
+<p>Blei, D. M., Ng, A. Y., &amp; Jordan, M. I. (2003). Latent dirichlet allocation. Journal of machine Learning research, 3(Jan), 993-1022.</p>
+<p>Bussler, F (2021, May 19). <em>Amazon Product Review Analysis: The Ultimate Guide (2021)</em>. [BLOG]. Commerce.AI. https://www.commerce.ai/blog/amazon-product-review-analysis-the-ultimate-guide</p>
+<p>Chan, M. (2019, May 16). <em>Vignette: Scraping Amazon Reviews in R</em> Musings on R https://martinctc.github.io/blog/vignette-scraping-amazon-reviews-in-r/</p>
+<p>Cooper, B. (2016). Intersectionality. In The Oxford handbook of feminist theory.</p>
+<p>Dataslice. (2020, May 10). <em>Web Scrape Nested Links/Multiple Pages - Web Scraping in R (Part 2)</em>.[Video]. Youtube. https://youtu.be/v8Yh_4oE-Fs</p>
+<p>Dataslice. (2020, May 10). <em>Web Scrape Text from ANY Website - Web Scraping in R (Part 1)</em>.[Video]. Youtube. https://youtu.be/E3pFBp5oPU8</p>
+<p>Dictionary.com (2022). <em>Intersectionality</em>. Dictionary.com https://www.dictionary.com/browse/intersectionality</p>
+<p>Din-Kariuki, N. (2015). <em>Feminist academics take note: women are not all white and straigh</em>t. The Guardian. https://www.theguardian.com/higher-education-network/2015/mar/03/feminist-academics-take-note-women-are-not-all-white-and-straight#:~:text=Women%20face%20a%20great%20deal,research%20to%20a%20wider%20audience.</p>
+<p>McClure, J. (2022). <em>A Computational Literature Review of Machine Intelligence in Education using Probabilistic Topic Modeling</em>. [Analysis in preparation]RPubs. https://eccb9c59fc074568b4dee36d7156481e.app.rstudio.cloud/file_show?path=%2Fcloud%2Fproject%2Fmodel3_3_24.html#4_EXPLORE</p>
+<p>Nasrin, S. (2021). New ways of activism: design justice and data feminism. <em>Social Movement Studies</em>, 1-5.</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
